@@ -17,7 +17,7 @@ public class PalindromeTester
       int left, right;
       Scanner s = new Scanner(System.in);
 
-      while (another.equalsIgnoreCase("y")) // allows y or Y
+      do
       {
          System.out.println ("Enter a potential palindrome:");
          str = s.nextLine();
@@ -42,5 +42,6 @@ public class PalindromeTester
          System.out.print ("Test another palindrome (y/n)? ");
          another = s.nextLine();
       }
+      while (another.equalsIgnoreCase("y")); // allows y or Y
    }
 }

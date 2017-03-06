@@ -11,37 +11,48 @@ public class PalindromeTester
      * Tests strings to see if they are palindromes.
      *
      */
-   public static void main (String[] args)
-   {
-      String str, another = "y";
-      int left, right;
-      Scanner s = new Scanner(System.in);
+    public static void main (String[] args)
+    {
+        String str, another = "y";
+        Scanner s = new Scanner(System.in);
 
-      do
-      {
-         System.out.println ("Enter a potential palindrome:");
-         str = s.nextLine();
+        do
+        {
+            System.out.println ("Enter a potential palindrome:");
+            str = s.nextLine();
 
-         left = 0;
-         right = str.length() - 1;
+            if( palindromeTester( str ))
+            {
+                System.out.println ("That string IS a palindrome.");
+            }
+            else
+            {
+                System.out.println ("That string IS NOT a palindrome.");
+            }
 
-         while (str.charAt(left) == str.charAt(right) && left < right)
-         {
-            left++;
-            right--;
-         }
+            System.out.println();
+            System.out.print ("Test another palindrome (y/n)? ");
+            another = s.nextLine();
+        }
+        while (another.equalsIgnoreCase("y")); // allows y or Y
+    }
 
-         System.out.println();
-
-         if (left < right)
-            System.out.println ("That string is NOT a palindrome.");
-         else
-            System.out.println ("That string IS a palindrome.");
-
-         System.out.println();
-         System.out.print ("Test another palindrome (y/n)? ");
-         another = s.nextLine();
-      }
-      while (another.equalsIgnoreCase("y")); // allows y or Y
-   }
+    public static boolean palindromeTester( String text )
+    {
+        // Terminating case
+        if( str.length() <= 1 )
+        {
+            return true;
+        }
+        
+        // if the first char equals the last char
+        if( str.charAt( 0 ) == str.charAt( str.length() - 1 ))
+        {
+            return palindromeTester( str.substring( 1, str.length() - 1 ));
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

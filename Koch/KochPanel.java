@@ -42,6 +42,7 @@ public class KochPanel extends JPanel
         Graphics2D g2 = (Graphics2D) page;
 
         int deltaX, deltaY, x2, y2, x3, y3, x4, y4;
+        
 
         if (order == 1)
         {

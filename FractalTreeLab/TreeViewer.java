@@ -16,7 +16,7 @@ public class TreeViewer
     private final int MIN = 1, MAX = 9;
     
     private TreePanel drawing;
-    private JPanel panel;
+    //private JPanel panel; 
     private JFrame frame;
 
     public static void main(String[] args)
@@ -30,10 +30,8 @@ public class TreeViewer
     public TreeViewer()
     {
         drawing = new TreePanel();
-        panel = new JPanel();
-        panel.add(drawing);
         frame = new JFrame();
-        frame.add(panel);
+        frame.add(drawing);
         frame.setVisible(true);
     }
 }

@@ -13,45 +13,52 @@ public class PalindromeTester
      * Tests strings to see if they are palindromes.
      *
      */
-    public static void main (String[] args) throws FileNotFoundException
+    public static void main (String[] args)
     {
         String str = "";
         String fileName = "palindrome.txt"; //default file
-        
+
         //read from the specified file
         if(args.length > 0)
         {
             fileName = args[0];
         }
         
-        //open the specified file for reading; throws exception if not found
-        File inputFile = new File(fileName);
-        Scanner s = new Scanner(inputFile);
-        s.useDelimiter("[^A-Za-z]+");
-        //read every token(word) in the file and concatenate them
-        while (s.hasNext())
+        try
         {
-            str += s.next();
-        }
+            //open the specified file for reading; throws exception if not found
+            File inputFile = new File(fileName);
+            Scanner s = new Scanner(inputFile);
+            s.useDelimiter("[^A-Za-z]+");
 
-        //close the Scanner object to indicate we are done reading from file.
-        s.close();
-        
-        str = str.toLowerCase();
-        
-        System.out.println(str);
-        
-        if (isPalindrome(str))
-        {
-            System.out.println("That string IS a palindrome.");
-        }
-        else
-        {
-            System.out.println("that string is NOT a paldindrome.");
-        }
+            //read every token(word) in the file and concatenate them
+            while (s.hasNext())
+            {
+                str += s.next();
+            }
 
+            //close the Scanner object to indicate we are done reading from file.
+            s.close();
+
+            str = str.toLowerCase();
+
+            System.out.println(str);
+
+            if (isPalindrome(str))
+            {
+                System.out.println("That string IS a palindrome.");
+            }
+            else
+            {
+                System.out.println("that string is NOT a paldindrome.");
+            }
+        }
+        catch(FileNotFoundException ex)
+        {
+            System.out.println("The file " + fileName + " was not found.");
+        }
     }
-    
+
     public static boolean isPalindrome(String str)
     {
         //requirement 1: terminating condition

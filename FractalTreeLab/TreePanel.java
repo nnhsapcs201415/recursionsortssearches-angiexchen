@@ -17,7 +17,7 @@ public class TreePanel extends JPanel
 
     private final double TOPX = 500, TOPY = 500;
     private int current = 0; //current order
-    double branchingAngle = Math.PI/6;
+    double branchingAngle = Math.PI/10;
     /**
      * Default constructor for objects of class TreePanel
      */
@@ -33,6 +33,7 @@ public class TreePanel extends JPanel
         {
             Line2D.Double first = new Line2D.Double(TOPX, TOPY, TOPX, TOPY+length);
             g2.draw(first);
+            repaint();
             current ++; 
         }
         
@@ -52,10 +53,12 @@ public class TreePanel extends JPanel
             y2 = y1 - dY;
             
             double newLength = length*0.75;
-
+            Line2D.Double line = new Line2D.Double(x1, y1, x2, y2);
+            g2.draw(line);
+            
             drawFractal(newLength, x2, y2, angle+branchingAngle, g2);
-            repaint();
             drawFractal(newLength, x2, y2, angle-branchingAngle, g2);
+            
             repaint();
         }
     }
@@ -64,8 +67,8 @@ public class TreePanel extends JPanel
     {
         super.paintComponent (page);
         Graphics2D g2 = (Graphics2D) page;
-        page.setColor (Color.green);
-        drawFractal (10, TOPX, TOPY, Math.PI/6, g2);
+        page.setColor (Color.blue);
+        drawFractal (100, TOPX, TOPY, Math.PI/6, g2);
     }
 
     public void setOrder (int order)

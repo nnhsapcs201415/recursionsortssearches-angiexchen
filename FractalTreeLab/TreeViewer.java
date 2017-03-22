@@ -12,11 +12,8 @@ public class TreeViewer
 {
     private final int WIDTH = 400;
     private final int HEIGHT = 500;
-
-    private final int MIN = 1, MAX = 9;
     
     private TreePanel drawing;
-    //private JPanel panel; 
     private JFrame frame;
 
     public static void main(String[] args)

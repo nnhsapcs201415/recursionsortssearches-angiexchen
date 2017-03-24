@@ -10,13 +10,26 @@ import java.awt.geom.Line2D;
  */
 public class TreePanel extends JPanel
 {
+    /**panel width*/
     final int PANEL_WIDTH = 1000;
+    
+    /**panel height*/
     private final int PANEL_HEIGHT = 1000;
+    
+    /**scaling size*/
     private final double SCALE = 0.75;
-    private int current = 0;
+    
+    /**coordinates of first point*/
     private final double TOPX = 750, TOPY = 850;
+    
+    /**branching angle*/
     double branchingAngle = Math.PI/18;
+    
+    /**starting length*/
     private final double LENGTH = 200;
+    
+    /**starting color*/
+    private Color COLOR = new Color(25, 33, 45);
     
     /**
      * Default constructor for objects of class TreePanel
@@ -27,7 +40,10 @@ public class TreePanel extends JPanel
         setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
     }
 
-    public void drawFractal(double length, double x1, double y1, double angle, Graphics2D g2)
+    /**
+     * Draws the fractal tree until the length of the branch is 2. 
+     */
+    public void drawFractal(Color color, double length, double x1, double y1, double angle, Graphics2D g2)
     {
             if (length <= 2)
             {}
@@ -45,30 +61,26 @@ public class TreePanel extends JPanel
                 y3 = y1 - dY;
 
                 double newLength = length*SCALE;
+                Color newColor = new Color(color.getRed()+10, color.getGreen()+3, color.getBlue()+10);
+                g2.setColor(newColor);
                 Line2D.Double line = new Line2D.Double(x1, y1, x2, y2);
                 g2.draw(line);
                 
-                drawFractal(newLength, x2, y2, angle+branchingAngle+Math.PI/10, g2);
-                drawFractal(newLength, x2, y2, angle-branchingAngle-Math.PI/6, g2);
+                
+                drawFractal(newColor, newLength, x2, y2, angle+branchingAngle+Math.PI/10, g2);
+                drawFractal(newColor, newLength, x2, y2, angle-branchingAngle-Math.PI/6, g2);
         }
     }
 
+    /**
+     * Paints the tree. 
+     */
     public void paintComponent (Graphics page)
     {
         super.paintComponent (page);
         Graphics2D g2 = (Graphics2D) page;
-        page.setColor (Color.blue);
-        drawFractal (LENGTH, TOPX, TOPY, 0, g2);
-    }
-
-    public void setOrder (int order)
-    {
-        current = order;
-    }
-
-    public int getOrder ()
-    {
-        return current;
+        page.setColor (Color.green);
+        drawFractal (COLOR, LENGTH, TOPX, TOPY, 0, g2);
     }
 
 }

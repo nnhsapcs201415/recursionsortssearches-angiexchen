@@ -29,6 +29,7 @@ public class TreeViewer
         drawing = new TreePanel();
         frame = new JFrame();
         frame.add(drawing);
+        frame.setSize(WIDTH, HEIGHT);
         frame.setVisible(true);
     }
 }

@@ -5,8 +5,8 @@ import java.awt.geom.Line2D;
 /**
  * Write a description of class TreePanel here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @angie chen
+ * @26 march 2017
  */
 public class TreePanel extends JPanel
 {
@@ -20,16 +20,16 @@ public class TreePanel extends JPanel
     private final double SCALE = 0.75;
     
     /**coordinates of first point*/
-    private final double TOPX = 750, TOPY = 850;
+    private final double TOPX = 500, TOPY = 500;
     
     /**branching angle*/
     double branchingAngle = Math.PI/18;
     
     /**starting length*/
-    private final double LENGTH = 200;
+    private final double LENGTH = 120;
     
-    /**starting color*/
-    private Color COLOR = new Color(25, 33, 45);
+    /**starting color of tree*/
+    private Color COLOR1 = new Color(155, 244, 65);
     
     /**
      * Default constructor for objects of class TreePanel
@@ -61,11 +61,10 @@ public class TreePanel extends JPanel
                 y3 = y1 - dY;
 
                 double newLength = length*SCALE;
-                Color newColor = new Color(color.getRed()+10, color.getGreen()+3, color.getBlue()+10);
+                Color newColor = new Color(color.getRed()+3, color.getGreen()-5, color.getBlue()+10);
                 g2.setColor(newColor);
                 Line2D.Double line = new Line2D.Double(x1, y1, x2, y2);
                 g2.draw(line);
-                
                 
                 drawFractal(newColor, newLength, x2, y2, angle+branchingAngle+Math.PI/10, g2);
                 drawFractal(newColor, newLength, x2, y2, angle-branchingAngle-Math.PI/6, g2);
@@ -79,8 +78,10 @@ public class TreePanel extends JPanel
     {
         super.paintComponent (page);
         Graphics2D g2 = (Graphics2D) page;
-        page.setColor (Color.green);
-        drawFractal (COLOR, LENGTH, TOPX, TOPY, 0, g2);
+        drawFractal (COLOR1, LENGTH, TOPX, TOPY, 0, g2);
+        drawFractal (COLOR1, LENGTH/1.5, TOPX, TOPY, Math.PI*(2.0/3), g2);
+        drawFractal (COLOR1, LENGTH/2.5, TOPX, TOPY, Math.PI*(4.0/3), g2);
+        drawFractal (COLOR1, LENGTH/6, TOPX, TOPY, Math.PI/2.5, g2);
     }
 
 }

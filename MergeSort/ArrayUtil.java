@@ -37,5 +37,28 @@ public class ArrayUtil
       a[i] = a[j];
       a[j] = temp;
    }
+   
+   public static String[] randomStringArray(int length, int numChars)
+   {
+       String[] array = new String[length];
+       for (int i = 0; i < array.length; i++)
+       {
+           array[i] = randomString(numChars);
+       }
+       return array;
+   }
+   
+   private static String randomString(int numChars)
+   {
+       String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+       String s = "";
+       for (int i = 0; i < numChars; i++)
+       {
+           char c = letters.charAt((int)(Math.random()*52));
+           s = s + c;
+        }
+       return s;
+   }
+   
 }
       
